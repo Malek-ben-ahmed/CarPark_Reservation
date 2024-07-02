@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,12 +19,13 @@ class MyAppState extends State<Homepage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(appBar:AppBar(backgroundColor: Colors.deepPurple[400],title:Text('Home Page',style:
+      home: Scaffold(appBar:AppBar(backgroundColor: Colors.deepPurple[400],title:const Text('Home Page',style:
       TextStyle(fontSize: 30,fontWeight: FontWeight.bold),textAlign: TextAlign.center),
-          actions:[IconButton(icon: Icon(Icons.logout), onPressed: () async
+          actions:[IconButton(icon: const Icon(Icons.logout), onPressed: () async
           {await FirebaseAuth.instance.signOut();Navigator.of(context).pushReplacementNamed('/signin');})]),body: Column(children: [
-      FirebaseAuth.instance.currentUser!.emailVerified ? Text("welcome",textAlign: TextAlign.center,style: TextStyle(color: Colors.deepPurple[600]),):TextButton(
-          onPressed:(){FirebaseAuth.instance.currentUser!.sendEmailVerification();}, child:Text("sendEmailVerification",textAlign:TextAlign.center,))])
+      FirebaseAuth.instance.currentUser!.emailVerified ? TextButton(onPressed: (){Navigator.of(context).pushReplacementNamed('/recherche');},child: Text("welcome",textAlign: TextAlign.center,style: TextStyle(color: Colors.deepPurple[600]),)):TextButton(
+          onPressed:(){FirebaseAuth.instance.currentUser!.sendEmailVerification();},
+          child:const Text("sendEmailVerification",textAlign:TextAlign.center,))],)
 
     ));
   }}
