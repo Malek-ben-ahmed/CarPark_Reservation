@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled2/Reservation.dart';
+import 'package:untitled2/slots.dart';
 import 'package:untitled2/signin.dart';
 import 'package:untitled2/signup.dart';
-
 import 'firebase_options.dart';
 import 'homepage.dart';
 
@@ -41,13 +42,18 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: FirebaseAuth.instance.currentUser == null ?const Signin():const Homepage() ,
+      debugShowCheckedModeBanner: false,home: Slots(),
+      /*home: FirebaseAuth.instance.currentUser == null ?const Signin():const Homepage() ,*/
       routes: {
-        '/signin': (context) => Signin(),
-        '/signup': (context) => Signup(),
-        '/homepage': (context) => Homepage(),
+        '/signin': (context) => const Signin(),
+        '/signup': (context) => const Signup(),
+        '/homepage': (context) => const Homepage(),
+        '/Lots':(context)=> Slots(),
+        'Reservation':(context)=>Reservation(),
+
       },
     );
   }
 }
+
+
